@@ -1,5 +1,6 @@
 package com.udemy.api.resources;
 
+import com.udemy.api.domain.User;
 import com.udemy.api.domain.dto.UserDto;
 import com.udemy.api.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -41,7 +42,13 @@ public class UserResource {
 
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody UserDto obj){
+        obj.setId(id);
+        User newObj = service.update(obj);
+        return ResponseEntity.ok().body(mapper.map(newObj, UserDto.class ));
 
+    }
 
 
 
