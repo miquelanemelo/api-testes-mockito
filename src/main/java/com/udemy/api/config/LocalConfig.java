@@ -20,6 +20,7 @@ public class LocalConfig {
     public void startDB(){
         User user1 = new User(null, "Miquelane", "miquelane@gmail", "123");
         User user2 = new User(null, "Bebel", "bebel@gmail", "123");
+
         repository.saveAll(List.of(user1, user2));
     }
 
