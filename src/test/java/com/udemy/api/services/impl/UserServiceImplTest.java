@@ -3,6 +3,7 @@ package com.udemy.api.services.impl;
 import com.udemy.api.domain.User;
 import com.udemy.api.domain.dto.UserDto;
 import com.udemy.api.repositories.UserRepository;
+import com.udemy.api.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -55,6 +56,19 @@ class UserServiceImplTest {
         assertEquals(ID, response.getId());
         assertEquals(NAME, response.getNome());
         assertEquals(EMAIL, response.getEmail());
+
+    }
+
+    @Test
+    void whenFindByIdTheReturnAnObjectNotFoundException(){
+        when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException("Objeto não encontrado"));
+
+        try{
+            service.findById(ID);
+        }catch(Exception ex){
+            assertEquals(ObjectNotFoundException.class, ex.getClass());
+            assertEquals("Objeto não encontrado", ex.getMessage());
+        }
 
     }
 
