@@ -32,7 +32,7 @@ class UserResourceTest {
     public static final int INDEX = 0;
 
     private User user;
-    private UserDto userDto;
+    private UserDto userDto = new UserDto();
 
     @InjectMocks
     private UserResource resource;
