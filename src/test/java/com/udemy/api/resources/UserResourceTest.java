@@ -123,8 +123,6 @@ class UserResourceTest {
         verify(service, times(1)).delete(anyInt());
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
 
-
-
     }
 
     private void startUser(){
